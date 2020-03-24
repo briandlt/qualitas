@@ -1,20 +1,14 @@
 const routes = require("express").Router();
 const fs = require("fs");
 const path = require("path");
+const request = require('superagent');
 
 routes.get("/", async(req, res)=>{
-    fs.readFile(path.resolve(__dirname, '../../../../users.json') , 'utf8', (err, file) => {
-        let users = JSON.parse(file);
-        res.status(200).json({
-            status: "OK",
-            result: users
-        });
-    } );
-    // let users = await axios.get("https://api.github.com/users");
-    // res.status(200).json({
-    //     status: "OK",
-    //     result: users
-    // });
+    let users = await request.get("https://api.github.com/users");
+    res.status(200).json({
+        status: "OK",
+        result: users.body
+    });
 })
 
 routes.get("/:username", async(req, res)=>{
@@ -28,10 +22,10 @@ routes.get("/:username", async(req, res)=>{
         });
     } );
 
-    // const users = await axios.get(`https://api.github.com/users/${username}`);
+    // const users = request.get(`https://api.github.com/users/${username}`);
     // res.status(200).json({
     //     status: "OK",
-    //     result: users
+    //     result: users.body
     // });
 })
 

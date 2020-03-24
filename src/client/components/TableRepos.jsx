@@ -21,6 +21,10 @@ class TableRepos extends Component{
         });
     }
 
+    getCommits(user, repo){
+        this.props.showCommits(user, repo);
+    }
+
   render() {
     console.log(this.state.repos);
     let rows = this.state.repos.map((repo,i) => {
@@ -28,7 +32,7 @@ class TableRepos extends Component{
                     <td>{repo.name}</td>
                     <td>{repo.forks_count}</td>
                     <td>{repo.stargazers_count}</td>
-                    <td><button className="btn btn-outline-info">Ver</button></td>
+                    <td><button className="btn btn-outline-info" onClick={() => this.getCommits(this.props.user, repo.name)}>Ver</button></td>
                 </tr>)
     });
     return(

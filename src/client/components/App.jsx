@@ -5,6 +5,7 @@ import Navigation from './Navigation.jsx';
 import TableUsers from "./TableUsers.jsx";
 import TableRepos from './TableRepos.jsx';
 import TableMoreInfo from './TableMoreInfo.jsx';
+import TableCommits from './TableCommits.jsx';
 
 class App extends Component {
 
@@ -15,7 +16,8 @@ class App extends Component {
           showInfo: false,
           showRepos: false,
           showCommits: false,
-          user: ''
+          user: '',
+          repo: ''
         }
 
         this.showInfo = this.showInfo.bind(this);
@@ -28,7 +30,8 @@ class App extends Component {
                             showInfo: true,
                             showRepos:false,
                             showCommits:false,
-                            user: user});
+                            user: user,
+                            repo: ''});
     }
 
     showRepos(user){
@@ -36,15 +39,17 @@ class App extends Component {
                             showInfo: false,
                             showRepos:true,
                             showCommits:false,
-                            user: user});
+                            user: user,
+                            repo: ''});
     }
 
-    showCommits(){
+    showCommits(user, repo){
         this.setState({showUsers: false,
                             showInfo: false,
                             showRepos:false,
                             showCommits:true,
-                            user: ''});
+                            user: user,
+                            repo: repo});
     }
 
     render() {
@@ -54,6 +59,7 @@ class App extends Component {
                 {this.state.showUsers && <TableUsers showRepos={this.showRepos} showInfo={this.showInfo}/>}
                 {this.state.showRepos && <TableRepos user={this.state.user.login} showCommits={this.showCommits}/>}
                 {this.state.showInfo && <TableMoreInfo user={this.state.user.login} />}
+                {this.state.showCommits && <TableCommits user={this.state.user.login} repo={this.state.repo}/>}
             </div>
         );
     }
