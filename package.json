@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "concurrently \"nodemon server.js\" \"webpack -w\" "
+    "dev": "concurrently \"nodemon src/server/server.js\" \"webpack -w\" "
   },
   "keywords": [],
   "author": "",
