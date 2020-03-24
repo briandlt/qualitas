@@ -31,12 +31,12 @@ class App extends Component {
                             user: user});
     }
 
-    showRepos(){
+    showRepos(user){
         this.setState({showUsers: false,
                             showInfo: false,
                             showRepos:true,
                             showCommits:false,
-                            user: ''});
+                            user: user});
     }
 
     showCommits(){
@@ -52,7 +52,7 @@ class App extends Component {
             <div>
                 <Navigation />
                 {this.state.showUsers && <TableUsers showRepos={this.showRepos} showInfo={this.showInfo}/>}
-                {this.state.showRepos && <TableRepos showCommits={this.showCommits}/>}
+                {this.state.showRepos && <TableRepos user={this.state.user.login} showCommits={this.showCommits}/>}
                 {this.state.showInfo && <TableMoreInfo user={this.state.user.login} />}
             </div>
         );

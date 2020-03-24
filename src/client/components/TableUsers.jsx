@@ -28,8 +28,8 @@ class TableUsers extends Component{
     this.props.showInfo(user);
   }
 
-  getRepos(){
-    this.props.showRepos();
+  getRepos(user){
+    this.props.showRepos(user);
   }
 
   render() {
@@ -37,10 +37,10 @@ class TableUsers extends Component{
         return (<tr key={i}>
                     <td><img src={user.avatar_url} width="50px"></img></td>
                     <td>{user.login}</td>
-                    <td><button className="btn btn-primary" href="" onClick={() => this.getInfo(user)}>Ver</button></td>
-                    <td><button className="btn btn-primary" href="" onClick={this.getRepos}>Ver</button></td>
+                    <td><button className="btn btn-outline-primary" href="" onClick={() => this.getInfo(user)}>Ver</button></td>
+                    <td><button className="btn btn-outline-success" href="" onClick={() => this.getRepos(user)}>Ver</button></td>
                 </tr>)
-    });
+    }); 
 
     return(
         <div className="container">
