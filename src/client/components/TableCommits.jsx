@@ -12,7 +12,6 @@ class TableCommits extends Component{
     }
 
     componentWillMount() {
-        console.log(this.props.user);
         request
           .get(`http://localhost:3000/repos/commits/${this.props.user}/${this.props.repo}`)
           .end((err, res) => {

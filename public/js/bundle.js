@@ -10711,35 +10711,13 @@ var Navigation = function (_Component) {
 
   _createClass(Navigation, [{
     key: "render",
-
-    // constructor(){
-    //   super();
-    //   this.state = {
-    //     users: []
-    //   }
-    // }
-
-    // componentWillMount() {
-    //     request
-    //       .get('http://localhost:3000/api/users')
-    //       .end((err, res) => {
-    //         const users = JSON.parse(res.text).users;
-    //         this.setState({
-    //           users: users
-    //         });
-    //       });
-    // }
-
     value: function render() {
-      // var users = this.state.users.map((user, i) => {
-      //   return <li key={i}>{user.nombre}</li>
-      // });
       return _react2.default.createElement(
         "div",
         null,
         _react2.default.createElement(
           "nav",
-          { className: "navbar navbar-dark bg-primary" },
+          { className: "navbar navbar-dark bg-dark" },
           _react2.default.createElement(
             "a",
             { className: "navbar-brand", href: "#!" },
@@ -10804,7 +10782,6 @@ var TableCommits = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            console.log(this.props.user);
             _superagent2.default.get('http://localhost:3000/repos/commits/' + this.props.user + '/' + this.props.repo).end(function (err, res) {
                 var commits = JSON.parse(res.text).result;
                 _this2.setState({
@@ -10954,7 +10931,7 @@ var TableMoreInfo = function (_Component) {
                 _react2.default.createElement(
                     "td",
                     null,
-                    this.state.user.following
+                    this.state.user.email
                 ),
                 _react2.default.createElement(
                     "td",
@@ -11082,7 +11059,6 @@ var TableRepos = function (_Component) {
         value: function render() {
             var _this3 = this;
 
-            console.log(this.state.repos);
             var rows = this.state.repos.map(function (repo, i) {
                 return _react2.default.createElement(
                     'tr',
@@ -11220,7 +11196,6 @@ var TableUsers = function (_Component) {
       var _this2 = this;
 
       _superagent2.default.get('http://localhost:3000/users').end(function (err, res) {
-        console.log(JSON.parse(res.text).result);
         var users = JSON.parse(res.text).result;
         _this2.setState({
           users: users

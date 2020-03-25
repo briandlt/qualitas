@@ -26,7 +26,6 @@ class TableRepos extends Component{
     }
 
   render() {
-    console.log(this.state.repos);
     let rows = this.state.repos.map((repo,i) => {
         return (<tr key={i}>
                     <td>{repo.name}</td>

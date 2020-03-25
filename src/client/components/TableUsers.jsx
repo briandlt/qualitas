@@ -16,7 +16,6 @@ class TableUsers extends Component{
       request
         .get('http://localhost:3000/users')
         .end((err, res) => {
-          console.log(JSON.parse(res.text).result);
           const users = JSON.parse(res.text).result;
           this.setState({
             users: users

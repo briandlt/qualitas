@@ -12,20 +12,21 @@ class TableMoreInfo extends Component{
 
     componentWillMount() {
         request
-          .get(`http://localhost:3000/users/${this.props.user}`)
-          .end((err, res) => {
+        .get(`http://localhost:3000/users/${this.props.user}`)
+        .end((err, res) => {
             const user = JSON.parse(res.text).result;
             this.setState({
               user: user
             });
-          });
+        });
+
     }
 
   render() {
     let row =  (<tr>
                     <td><img src={this.state.user.avatar_url} width="50px"></img></td>
                     <td>{this.state.user.login}</td>
-                    <td>{this.state.user.following}</td>
+                    <td>{this.state.user.email}</td>
                     <td>{this.state.user.html_url}</td>
                 </tr>);
 

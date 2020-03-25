@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const request = require('superagent');
 
+// mostrar los repositorios de un usuario
 routes.get("/:username", async(req, res)=>{
     const {username} = req.params;
 
@@ -13,17 +14,9 @@ routes.get("/:username", async(req, res)=>{
     });
 })
 
+// mostar los commits de un repositorio
 routes.get("/commits/:username/:repo", async(req, res)=>{
     const {repo, username} = req.params;
-    
-    // fs.readFile(path.resolve(__dirname, '../../../../commits.json') , 'utf8', (err, file) => {
-    //     let user = JSON.parse(file);
-    //     res.status(200).json({
-    //         status: "OK",
-    //         result: user
-    //     });
-    // } );
-
     let users = await request.get(`https://api.github.com/repos/${username}/${repo}/commits`);
     res.status(200).json({
         status: "OK",
