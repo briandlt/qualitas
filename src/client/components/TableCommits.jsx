@@ -12,14 +12,14 @@ class TableCommits extends Component{
     }
 
     componentWillMount() {
+        console.log(this.props.user);
         request
-          .get(`http://localhost:3000/commits/${this.props.user}/${this.props.repo}`)
+          .get(`http://localhost:3000/repos/commits/${this.props.user}/${this.props.repo}`)
           .end((err, res) => {
             const commits = JSON.parse(res.text).result;
             this.setState({
               commits: commits
             });
-            console.log(commits);
         });
     }
 
@@ -28,10 +28,10 @@ class TableCommits extends Component{
     }
 
   render() {
-    // console.log(this.state.commits);
     let rows = this.state.commits.map((commit,i) => {
         return (<tr key={i}>
-                    <td>{commit.name}</td>
+                    <td>{commit.sha}</td>
+                    <td>{commit.commit.message}</td>
                 </tr>)
     });
     return(
@@ -41,6 +41,7 @@ class TableCommits extends Component{
                 <thead className="thead-light">
                     <tr>
                         <th>Commit</th>
+                        <th>Mensaje</th>
                     </tr>
                 </thead>
                 <tbody>

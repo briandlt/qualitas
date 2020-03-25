@@ -10655,7 +10655,7 @@ var App = function (_Component) {
                 this.state.showUsers && _react2.default.createElement(_TableUsers2.default, { showRepos: this.showRepos, showInfo: this.showInfo }),
                 this.state.showRepos && _react2.default.createElement(_TableRepos2.default, { user: this.state.user.login, showCommits: this.showCommits }),
                 this.state.showInfo && _react2.default.createElement(_TableMoreInfo2.default, { user: this.state.user.login }),
-                this.state.showCommits && _react2.default.createElement(_TableCommits2.default, { user: this.state.user.login, repo: this.state.repo })
+                this.state.showCommits && _react2.default.createElement(_TableCommits2.default, { user: this.state.user, repo: this.state.repo })
             );
         }
     }]);
@@ -10804,12 +10804,12 @@ var TableCommits = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            _superagent2.default.get('http://localhost:3000/commits/' + this.props.user + '/' + this.props.repo).end(function (err, res) {
+            console.log(this.props.user);
+            _superagent2.default.get('http://localhost:3000/repos/commits/' + this.props.user + '/' + this.props.repo).end(function (err, res) {
                 var commits = JSON.parse(res.text).result;
                 _this2.setState({
                     commits: commits
                 });
-                console.log(commits);
             });
         }
     }, {
@@ -10820,7 +10820,6 @@ var TableCommits = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            // console.log(this.state.commits);
             var rows = this.state.commits.map(function (commit, i) {
                 return _react2.default.createElement(
                     'tr',
@@ -10828,7 +10827,12 @@ var TableCommits = function (_Component) {
                     _react2.default.createElement(
                         'td',
                         null,
-                        commit.name
+                        commit.sha
+                    ),
+                    _react2.default.createElement(
+                        'td',
+                        null,
+                        commit.commit.message
                     )
                 );
             });
@@ -10853,6 +10857,11 @@ var TableCommits = function (_Component) {
                                 'th',
                                 null,
                                 'Commit'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'Mensaje'
                             )
                         )
                     ),

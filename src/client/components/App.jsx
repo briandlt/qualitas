@@ -59,7 +59,7 @@ class App extends Component {
                 {this.state.showUsers && <TableUsers showRepos={this.showRepos} showInfo={this.showInfo}/>}
                 {this.state.showRepos && <TableRepos user={this.state.user.login} showCommits={this.showCommits}/>}
                 {this.state.showInfo && <TableMoreInfo user={this.state.user.login} />}
-                {this.state.showCommits && <TableCommits user={this.state.user.login} repo={this.state.repo}/>}
+                {this.state.showCommits && <TableCommits user={this.state.user} repo={this.state.repo}/>}
             </div>
         );
     }
